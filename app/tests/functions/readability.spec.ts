@@ -1,7 +1,7 @@
 import getScores from "../../src/functions/readability";
 
 describe("Readability Tests", () => {
-    test("Test", async () => {
+    test("Test Stub", async () => {
         const expected = {
             automatedReadabilityIndex: 8.84,
             colemanLiauIndex: 8.24,

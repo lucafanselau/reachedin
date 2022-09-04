@@ -4,6 +4,7 @@ import getScores from "../src/functions/readability";
 import { useStore } from "../src/store";
 
 
+// NOTE: This just exists, so that the main page, does not has to be rerendered for every change
 const TextArea = () => {
   const { updateDraft, draft } = useStore();
 
@@ -12,7 +13,7 @@ const TextArea = () => {
   }, [updateDraft])
 
   return (
-              <textarea value={draft} onChange={onChange} className="flex-1 textarea resize-none textarea-bordered" />
+    <textarea value={draft} onChange={onChange} className="flex-1 textarea resize-none textarea-bordered" />
   )
 }
 
@@ -22,8 +23,8 @@ export default function Home() {
   const onSubmit = useCallback(() => {
     const { draft, setResults } = useStore.getState();
     // handle submitting draft
-    const results = getScores(draft)
-    setResults(results)
+    const scores = getScores(draft)
+    setResults({ scores });
     router.push("/results");
   }, [])
 
@@ -41,8 +42,8 @@ export default function Home() {
              <h1 className="card-title">Check your LinkedIn Post</h1>
              <TextArea />
               <div className="card-actions justify-end">
-                <button className="btn btn-small btn-error" onClick={onReset}>Reset</button>
-                <button className="btn btn-small" onClick={onSubmit}>Submit</button>
+                <button className="btn btn-small btn-secondary" onClick={onReset}>Reset</button>
+                <button className="btn btn-small btn-primary" onClick={onSubmit}>Submit</button>
               </div>
             </div>
           </div>

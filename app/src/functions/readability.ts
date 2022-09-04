@@ -1,15 +1,34 @@
 
-interface Scores {
+export interface ReadabilityScores {
+    // Ranges in US School Levels. The automated readability index (ARI) is a readability test for English texts, designed to gauge the understandability of a text
     automatedReadabilityIndex: number;
+    // Ranges in US School Levels. Coleman–Liau relies on characters instead of syllables per word.
     colemanLiauIndex: number;
+    // Number between 0 and 100 where 0 is lowest readability (scientific paper) and 100 is 5th grade school
     fleschKincaidGrade: number;
+    // Number between 0 and 100 where 0 is lowest readability (scientific paper) and 100 is 5th grade school
     fleschReadingEase: number;
+    // has to be trial and errored
     linsearWriteFormula: number;
     medianGrade: number;
+    // in seconds / minutes?
     readingTime: number;
+    // measure readability based on letter counting. They don't use the syllable counting method of many other formulas
     rix: number;
+    // Simple Measure of Gobbledygook - 
     smogIndex: number;
 }
+
+export const scoreRanges = {
+    automatedReadabilityIndex: [1, 14],
+    colemanLiauIndex: [0, 11],
+    fleschKincaidGrade: [0, 100],
+    fleschReadingEase: [0, 100],
+    linsearWriteFormula: [0, 100],
+    medianGrade: [0, 14],
+    rix: [0, 56],
+    smogIndex: [5, 18]
+} as const;
 
 /**
  * inspired by https://github.com/sahava/readability-score-javascript/blob/master/readability.js
@@ -233,7 +252,7 @@ const getScores = (text: string) => {
   
     // Build textStandard
     let grade: any = [];
-    const scores: Scores = {
+    const scores: ReadabilityScores = {
         automatedReadabilityIndex: 0,
         colemanLiauIndex: 0,
         fleschKincaidGrade: 0,
