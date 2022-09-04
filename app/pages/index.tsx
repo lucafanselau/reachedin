@@ -115,7 +115,7 @@ export default function Home() {
         <div className="container bottom-0 flex-row grid justify-center max-w-[1000px]">
           <div className="container flex flex-row justify-center my-16">
             <div className="item m-4">
-              <p>We (currently) don't track you!</p>
+              <p>We (currently) don&apos;t track you!</p>
             </div>
             <div className="item m-4">
               <p>Made with 💖 for everyone to use!</p>
